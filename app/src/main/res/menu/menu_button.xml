@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+   xmlns:app="http://schmas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/cafe_list_tab"
+        app:showAsAciton="always"
+        android:icon="@drawable/menu_list_icon"
+        android:enabled="true"
+        android:checked="true"
+        android:title="카페리스트"/>
+
+    <item
+        android:id="@+id/beverage_list_tab"
+        app:showAsAction="always"
+        android:icon="@drawable/menu_list_icon"
+        android:enabled="true"
+        android:checked="true"
+        android:title="음료리스트"/>
 </menu>

@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Cafe_List_Fragement extends Fragment {
+public class Beverage_List_Fragment extends Fragment {
     ViewGroup viewGroup;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.cafe_list_fragment, container, false);
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.beverage_list_fragment, container, false);
 
         return viewGroup;
     }
