@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         userID = (EditText)findViewById(R.id.et_id);
         userPW = (EditText)findViewById(R.id.et_pass);
-
-        final CustomTask task = new CustomTask();
-
+        
         register_btn = (Button) findViewById(R.id.btn_register);
         register_btn.setOnClickListener(new Button.OnClickListener(){
 
@@ -55,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 String pw = userPW.getText().toString();
 
                 try {
+                    CustomTask task = new CustomTask();
                     String result = task.execute(id, pw).get();
 
                     if(result.equals("true")) {
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 String str;
                 URL url = new URL("http://192.168.0.4:8090/test_project/login.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestProperty("Content-Type", "application/X-www-form-urlencoded");
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
