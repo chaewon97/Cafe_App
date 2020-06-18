@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     CustomTask task = new CustomTask();
                     String result = task.execute(id, pw).get();
-
+                    Log.i("result :: ",result);
+                    result = result.trim();
                     if(result.equals("true")) {
                         Intent intent = new Intent(getApplicationContext(),
                                 home.class);
