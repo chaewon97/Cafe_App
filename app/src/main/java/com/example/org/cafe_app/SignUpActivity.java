@@ -77,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "id=" + strings[0] + "&pw=" + strings[1] + "&name=" + strings[2] + "&phonenumber=" + strings[4];
+                sendMsg = "id=" + strings[0] + "&pw=" + strings[1] + "&name=" + strings[2] + "&phonenumber=" + strings[3];
                 osw.write(sendMsg);
                 osw.flush();
 
