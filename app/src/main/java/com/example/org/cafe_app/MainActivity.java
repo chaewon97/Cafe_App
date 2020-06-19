@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         userID = (EditText)findViewById(R.id.et_id);
         userPW = (EditText)findViewById(R.id.et_pass);
-        
+
         register_btn = (Button) findViewById(R.id.btn_register);
         register_btn.setOnClickListener(new Button.OnClickListener(){
 
@@ -55,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     CustomTask task = new CustomTask();
                     String result = task.execute(id, pw).get();
+
                     Log.i("result :: ",result);
                     result = result.trim();
+
                     if(result.equals("true")) {
                         Intent intent = new Intent(getApplicationContext(),
                                 home.class);
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
 
+                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
                 osw.write(sendMsg);
                 osw.flush();
 
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }catch(MalformedURLException e){
-             e.printStackTrace();
+                e.printStackTrace();
             }catch (IOException e){
                 e.printStackTrace();
             }
