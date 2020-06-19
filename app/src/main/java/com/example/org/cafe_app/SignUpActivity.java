@@ -2,6 +2,7 @@ package com.example.org.cafe_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,10 +23,14 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText id, pw, phone, name;
     Button btn_ok;
+    public static Activity signupActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        signupActivity = SignUpActivity.this;
 
         id = (EditText)findViewById(R.id.id);
         pw = (EditText)findViewById(R.id.password);
@@ -46,8 +51,10 @@ public class SignUpActivity extends AppCompatActivity {
                  CustomTask task = new CustomTask();
                  String result = task.execute(userid, userpw, userName, phoneNumber).get();
 
+                 result = result.trim();
+
                  if(result.equals("true")){
-                    finish();
+                    signupActivity.finish();
                  }
                  else{
                     Log.e("결과 :: ","저장에 실패함");
@@ -69,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.0.4:8090/test_project/signup.jsp");
+                URL url = new URL("http://172.30.1.55:8090/test_project/signup.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
