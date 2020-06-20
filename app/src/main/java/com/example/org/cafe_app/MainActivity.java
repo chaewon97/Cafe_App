@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 String id = userID.getText().toString();
                 String pw = userPW.getText().toString();
 
-                /*
+
                 try {
                     CustomTask task = new CustomTask();
                     String result = task.execute(id, pw).get();
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-                */
+
                 Intent intent = new Intent(getApplicationContext(),
                         home.class);
                 startActivity(intent);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http:/172.20.10.2:8090/test_project/login.jsp");
+                URL url = new URL("http://192.168.0.4:8090/test_project/login.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

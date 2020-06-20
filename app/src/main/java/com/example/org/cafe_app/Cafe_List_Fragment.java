@@ -21,6 +21,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,30 +58,34 @@ public class Cafe_List_Fragment extends Fragment{
         try {
             CustomTask task = new CustomTask();
             String result = task.execute().get();
-            result = result.trim();
 
-            Log.e("결과 ::", result);
+            JSONObject resultObject;
+            JSONArray resultObjectArray = new JSONArray(result);
+
+            ArrayList<CafeVO> items = new ArrayList<>();
+            if(resultObjectArray.length() != 0){
+                for(int i = 0 ; i < resultObjectArray.length(); i++){
+                    resultObject = resultObjectArray.getJSONObject(i);
+
+                    String title = resultObject.getString("name");
+                    String id = resultObject.getString("id");
+
+                    CafeVO item = new CafeVO(R.drawable.logo, title, id);
+                    items.add(item);
+
+                }
+
+
+            }
+            recyclerView.setAdapter(new CafeListAdapter(getActivity(), items, R.layout.cafe_list_fragment));
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
-        ArrayList<CafeVO> items = new ArrayList<>();
-        CafeVO[] item = new CafeVO[5];
-
-        item[0] = new CafeVO(R.drawable.logo,"starbucks");
-        item[1] = new CafeVO(R.drawable.logo, "angel-in-us");
-        item[2] = new CafeVO(R.drawable.logo, "hollys");
-        item[3] = new CafeVO(R.drawable.logo, "#4");
-        item[4] = new CafeVO(R.drawable.logo, "#5");
-
-
-        for(int i = 0 ; i < 5 ; i++)
-            items.add(item[i]);
-
-        recyclerView.setAdapter(new CafeListAdapter(getActivity(), items, R.layout.cafe_list_fragment));
 
         return viewGroup;
     }
@@ -89,7 +97,7 @@ public class Cafe_List_Fragment extends Fragment{
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://172.20.10.2:8090/test_project/list.jsp");
+                URL url = new URL("http://192.168.0.4:8090/test_project/list.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
