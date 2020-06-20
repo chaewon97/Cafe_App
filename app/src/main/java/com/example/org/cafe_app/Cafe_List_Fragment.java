@@ -35,11 +35,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Cafe_List_Fragment extends Fragment{
+public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnItemClickListner{
     ViewGroup viewGroup;
     private RecyclerView rcc_cafe;
     private CafeListAdapter mCafeAdapter;
     private Context context;
+    private Beverage_List_Fragment beverage_list_fragment;
 
     public Cafe_List_Fragment(Context context){
         this.context = context;
@@ -50,6 +51,7 @@ public class Cafe_List_Fragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
 
         viewGroup = (ViewGroup) inflater.inflate(R.layout.cafe_list_fragment, container, false);
+        beverage_list_fragment = new Beverage_List_Fragment(context);
 
         RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.cafe_list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
@@ -85,6 +87,11 @@ public class Cafe_List_Fragment extends Fragment{
         }
 
         return viewGroup;
+    }
+
+    @Override
+    public void onItemClick(View view, CafeVO cafeVO) {
+        ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle());
     }
 
     class CustomTask extends AsyncTask<String,Void, String> {

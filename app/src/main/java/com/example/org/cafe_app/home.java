@@ -2,6 +2,9 @@ package com.example.org.cafe_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -26,7 +29,7 @@ public class home extends AppCompatActivity {
 
         //Create FragmentView
         cafe_list_fragment = new Cafe_List_Fragment(this.getApplicationContext());
-        beverage_list_fragment = new Beverage_List_Fragment();
+        beverage_list_fragment = new Beverage_List_Fragment(this.getApplicationContext());
 
         //FirstView Fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.home_layout, cafe_list_fragment).commitAllowingStateLoss();
@@ -44,9 +47,12 @@ public class home extends AppCompatActivity {
                         return true;
                     }
                     case R.id.beverage_list_tab: {
+                        /*
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.home_layout, beverage_list_fragment).commitAllowingStateLoss();
-
+                         */
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.home_layout, cafe_list_fragment).commitAllowingStateLoss();
                         return true;
                     }
 
@@ -55,5 +61,15 @@ public class home extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void replaceFragment(Fragment fragment, String id, String name){
+        Bundle args = new Bundle();
+        args.putString("cafe_id", id);
+        args.putString("cafe_name", name);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragment.setArguments(args); // 데이터 넘기기
+        fragmentTransaction.replace(R.id.home_layout, fragment).commit();
     }
 }
