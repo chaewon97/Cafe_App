@@ -1,6 +1,9 @@
 package com.example.org.cafe_app;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +14,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHolder>{
     private Context mContext;
     private ArrayList<CafeVO> cafe_list;
+    int item_layout;
+
+    public CafeListAdapter(Context context, ArrayList<CafeVO> items, int item_layout){
+
+        this.mContext = context;
+        this.cafe_list = items;
+        this.item_layout = item_layout;
+    }
 
     public OnItemClickListner mOmItemClickListner = null;
 
@@ -35,14 +53,22 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
 
     @Override
     public CafeListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View convertView = LayoutInflater.from(mContext).inflate(R.layout.cafe_item, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        return new ViewHolder(convertView);
+        View v = inflater.inflate(R.layout.cafe_item, null);
+
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(CafeListAdapter.ViewHolder holder, int position) {
         CafeVO cafeVO = cafe_list.get(position);
+
+        ViewHolder viewHolder = (ViewHolder)holder;
+        Drawable drawable = mContext.getResources().getDrawable(cafeVO.getThumb_nail());
+        viewHolder.img_thumb.setBackground(drawable);
+
+        viewHolder.txt_cafe_name.setText(cafeVO.getTitle());
     }
 
     @Override
@@ -50,7 +76,7 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
         return cafe_list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private LinearLayout layout_cafe_panel;
         private ImageView img_thumb;
@@ -63,5 +89,12 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
             img_thumb = (ImageView)convertView.findViewById(R.id.img_thumb);
             txt_cafe_name = (TextView)convertView.findViewById(R.id.cafe_title);
         }
+
+        @Override
+        public void onClick(View view) {
+            int position = getPosition();
+        }
     }
 }
+
+

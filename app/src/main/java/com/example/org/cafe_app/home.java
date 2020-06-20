@@ -25,7 +25,7 @@ public class home extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //Create FragmentView
-        cafe_list_fragment = new Cafe_List_Fragment();
+        cafe_list_fragment = new Cafe_List_Fragment(this.getApplicationContext());
         beverage_list_fragment = new Beverage_List_Fragment();
 
         //FirstView Fragment
