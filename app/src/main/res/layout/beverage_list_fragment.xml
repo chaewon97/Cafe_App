@@ -5,15 +5,34 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#3F27B0">
+    android:background="#555555">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="HelloWorld"
-        android:textColor="@android:color/holo_orange_light"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:layout_height="45dp"
+        android:background="@color/bg_main">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="100dp"/>
+            <TextView
+                android:id="@+id/cafe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="CafeName"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+        </RelativeLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:id="@+id/item_list">
+        </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

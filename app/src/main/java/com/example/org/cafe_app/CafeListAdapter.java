@@ -22,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHolder>{
     private Context mContext;
@@ -76,7 +77,7 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
         return cafe_list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         private LinearLayout layout_cafe_panel;
         private ImageView img_thumb;
@@ -89,12 +90,8 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
             img_thumb = (ImageView)convertView.findViewById(R.id.img_thumb);
             txt_cafe_name = (TextView)convertView.findViewById(R.id.cafe_title);
         }
-
-        @Override
-        public void onClick(View view) {
-            int position = getPosition();
-        }
     }
+
 }
 
 
