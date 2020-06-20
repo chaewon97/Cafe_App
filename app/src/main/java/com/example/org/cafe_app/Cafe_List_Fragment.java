@@ -65,17 +65,14 @@ public class Cafe_List_Fragment extends Fragment{
             ArrayList<CafeVO> items = new ArrayList<>();
             if(resultObjectArray.length() != 0){
                 for(int i = 0 ; i < resultObjectArray.length(); i++){
-                    resultObject = resultObjectArray.getJSONObject(i);
+                    resultObject = (JSONObject) resultObjectArray.get(i);
 
                     String title = resultObject.getString("name");
                     String id = resultObject.getString("id");
 
                     CafeVO item = new CafeVO(R.drawable.logo, title, id);
                     items.add(item);
-
                 }
-
-
             }
             recyclerView.setAdapter(new CafeListAdapter(getActivity(), items, R.layout.cafe_list_fragment));
 
