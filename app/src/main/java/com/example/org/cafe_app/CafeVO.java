@@ -14,6 +14,7 @@ public class CafeVO {
     public String getTitle() {return this.title;}
     public String getId() {return this.id;}
 
+
     public CafeVO(byte[] image, String title){
         this.image = image;
         this.title = title;

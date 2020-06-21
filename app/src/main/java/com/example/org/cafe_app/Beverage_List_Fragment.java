@@ -48,9 +48,6 @@ public class Beverage_List_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         viewGroup = (ViewGroup) inflater.inflate(R.layout.beverage_list_fragment, container, false);
 
-        cafe_title = (TextView) getView().findViewById(R.id.cafe_name);
-        cafe_title.setText(title);
-
         RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.item_list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -59,11 +56,16 @@ public class Beverage_List_Fragment extends Fragment {
         if(args != null){
             this.id = args.getString("cafe_id");
             this.title = args.getString("cafe_name");
+
+            Log.e("cafeID :: " , id);
         }
+
+        cafe_title = (TextView) viewGroup.findViewById(R.id.name_cafe);
+        cafe_title.setText(title);
 
         try{
             CustomTask task = new CustomTask();
-            String result = task.execute(this.id).get();
+            String result = task.execute(id).get();
 
             JSONObject resultObject;
             JSONArray resultObjectArray = new JSONArray(result);
@@ -76,8 +78,15 @@ public class Beverage_List_Fragment extends Fragment {
                     String name = resultObject.getString("name");
                     String id = resultObject.getString("id");
                     int price = Integer.parseInt(resultObject.getString("price"));
+                    int type  = Integer.parseInt(resultObject.getString("type"));
+                    ItemVO item;
 
-                    ItemVO item = new ItemVO(R.drawable.logo, name, id, price);
+                    if(type == 1) {
+                        item = new ItemVO(R.drawable.coffee, name, id, price, type);
+                    }
+                    else{
+                        item = new ItemVO(R.drawable.cake, name, id, price, type);
+                    }
                     items.add(item);
                 }
             }
@@ -106,7 +115,7 @@ public class Beverage_List_Fragment extends Fragment {
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "id="+strings[0];
+                sendMsg = "cafe_id="+strings[0];
                 osw.write(sendMsg);
                 osw.flush();
 

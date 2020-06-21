@@ -35,7 +35,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnItemClickListner{
+public class Cafe_List_Fragment extends Fragment{
     ViewGroup viewGroup;
     private RecyclerView rcc_cafe;
     private CafeListAdapter mCafeAdapter;
@@ -76,7 +76,16 @@ public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnIt
                     items.add(item);
                 }
             }
-            recyclerView.setAdapter(new CafeListAdapter(getActivity(), items, R.layout.cafe_list_fragment));
+
+            mCafeAdapter = new CafeListAdapter(context, items, R.layout.cafe_list_fragment);
+            mCafeAdapter.setOnItemClickListener(new CafeListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, CafeVO cafeVO) {
+                    Log.e("카페 :: ", cafeVO.getId()+ ", " + cafeVO.getTitle());
+                    ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle());
+                }
+            });
+            recyclerView.setAdapter(mCafeAdapter);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -87,12 +96,6 @@ public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnIt
         }
 
         return viewGroup;
-    }
-
-    @Override
-    public void onItemClick(View view, CafeVO cafeVO) {
-        Log.e("카페 :: ", cafeVO.getId()+ ", " + cafeVO.getTitle());
-        ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle());
     }
 
     class CustomTask extends AsyncTask<String,Void, String> {

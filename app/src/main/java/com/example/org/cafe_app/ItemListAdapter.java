@@ -59,7 +59,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         viewHolder.img_thumb.setBackground(drawable);
 
         viewHolder.txt_item_name.setText(itemVO.getTitle());
-        viewHolder.txt_price.setText(itemVO.getPrice());
+        viewHolder.txt_price.setText(String.valueOf(itemVO.getPrice()));
     }
 
     @Override
