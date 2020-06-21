@@ -35,7 +35,7 @@ public class home extends AppCompatActivity {
 
         Intent intent = getIntent();
         user_id = intent.getStringExtra("user_id");
-        Log.e("로그인 아이디 :: ",user_id);
+        Log.e("로그인 아이디 :: ", user_id);
 
         //FirstView Fragment
         replaceFragment(cafe_list_fragment, user_id);
