@@ -52,7 +52,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ItemListAdapter.ViewHolder holder, int position) {
-        ItemVO itemVO = item_list.get(position);
+        final ItemVO itemVO = item_list.get(position);
 
         ViewHolder viewHolder = (ViewHolder)holder;
         Drawable drawable = mContext.getResources().getDrawable(itemVO.getThumb_nail());
@@ -60,6 +60,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         viewHolder.txt_item_name.setText(itemVO.getTitle());
         viewHolder.txt_price.setText(String.valueOf(itemVO.getPrice()));
+        viewHolder.layout_item_panel.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                mOmItemClickListener.onItemClick(view, itemVO);
+            }
+        });
     }
 
     @Override
