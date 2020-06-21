@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment {
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "up_price="+strings[0]+"down_price="+strings[1]+"name="+strings[2];
+                sendMsg = "up_price="+strings[0]+"&down_price="+strings[1]+"&name="+strings[2];
                 osw.write(sendMsg);
                 osw.flush();
 
