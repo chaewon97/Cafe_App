@@ -35,7 +35,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnItemClickListner{
+public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnItemClickListener{
     ViewGroup viewGroup;
     private RecyclerView rcc_cafe;
     private CafeListAdapter mCafeAdapter;
@@ -91,6 +91,7 @@ public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnIt
 
     @Override
     public void onItemClick(View view, CafeVO cafeVO) {
+        Log.e("카페 ::" , cafeVO.getId()+ "," + cafeVO.getTitle());
         ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle());
     }
 
@@ -101,7 +102,7 @@ public class Cafe_List_Fragment extends Fragment implements CafeListAdapter.OnIt
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.0.4:8090/test_project/list.jsp");
+                URL url = new URL("http://192.168.1.37:8090/test_project/list.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

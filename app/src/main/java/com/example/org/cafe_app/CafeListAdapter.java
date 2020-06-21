@@ -29,6 +29,7 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
     private ArrayList<CafeVO> cafe_list;
     int item_layout;
 
+
     public CafeListAdapter(Context context, ArrayList<CafeVO> items, int item_layout){
 
         this.mContext = context;
@@ -36,14 +37,15 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
         this.item_layout = item_layout;
     }
 
-    public OnItemClickListner mOmItemClickListner = null;
+    public OnItemClickListener mOnItemClickListener = null;
 
-    public interface OnItemClickListner{
+
+    public interface OnItemClickListener{
         void onItemClick(View view, CafeVO cafeVO);
     }
 
-    public void setOnItemClickListener(OnItemClickListner listener){
-        mOmItemClickListner = listener;
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mOnItemClickListener = listener;
     }
 
     public CafeListAdapter(Context mContext, ArrayList<CafeVO> cafe_list){
@@ -63,13 +65,20 @@ public class CafeListAdapter extends RecyclerView.Adapter<CafeListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(CafeListAdapter.ViewHolder holder, int position) {
-        CafeVO cafeVO = cafe_list.get(position);
+        final CafeVO cafeVO = cafe_list.get(position);
 
         ViewHolder viewHolder = (ViewHolder)holder;
         Drawable drawable = mContext.getResources().getDrawable(cafeVO.getThumb_nail());
         viewHolder.img_thumb.setBackground(drawable);
 
         viewHolder.txt_cafe_name.setText(cafeVO.getTitle());
+        viewHolder.layout_cafe_panel.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                mOnItemClickListener.onItemClick(view, cafeVO);
+            }
+        });
     }
 
     @Override
