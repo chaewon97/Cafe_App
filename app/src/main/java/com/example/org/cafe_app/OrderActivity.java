@@ -47,7 +47,7 @@ public class OrderActivity extends AppCompatActivity{
             public void onClick(View view) {
                 try {
                     InsertTask task = new InsertTask();
-                    String result = task.execute(user_id).get();
+                    String result = task.execute(user_id, beverage_id).get();
 
                     if(result.equals("true")){
                         Log.e("OrderResult :: ", "success");
@@ -70,7 +70,7 @@ public class OrderActivity extends AppCompatActivity{
 
                 try{
                     ReadListTask task = new ReadListTask();
-                    String result = task.execute(user_id, beverage_id).get();
+                    String result = task.execute(user_id).get();
 
                     JSONObject resultObject;
                     JSONArray resultObjectArray = new JSONArray(result);
