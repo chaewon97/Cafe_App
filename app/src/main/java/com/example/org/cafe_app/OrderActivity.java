@@ -72,6 +72,7 @@ public class OrderActivity extends AppCompatActivity{
                 try{
                     ReadListTask task = new ReadListTask();
                     String result = task.execute(user_id).get();
+                    Log.e("result :: " , result);
 
                     JSONObject resultObject;
                     JSONArray resultObjectArray = new JSONArray(result);
@@ -82,7 +83,7 @@ public class OrderActivity extends AppCompatActivity{
                         for(int i = 0 ; i < resultObjectArray.length() ; i++){
                             resultObject = (JSONObject)resultObjectArray.get(i);
 
-                            String user_id = resultObject.getString("user_id");
+                            final String user_id = resultObject.getString("user_id");
                             String drink_id = resultObject.getString("drink_id");
                             String drink_price = resultObject.getString("drink_price");
                             String drink_name = resultObject.getString("drink_name");
@@ -95,7 +96,7 @@ public class OrderActivity extends AppCompatActivity{
                                 public void onClick(View view) {
                                     try{
                                         DeleteTask task = new DeleteTask();
-                                        String result = task.execute(order_id).get();
+                                        String result = task.execute(order_id, user_id).get();
 
                                         if(result.equals("true")){
                                             Log.e("DeleteResult :: ", "success");
@@ -142,7 +143,6 @@ public class OrderActivity extends AppCompatActivity{
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
                 sendMsg = "user_id="+strings[0];
-
                 osw.write(sendMsg);
                 osw.flush();
 
@@ -222,7 +222,7 @@ public class OrderActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "order_id="+strings[0];
+                sendMsg = "order_id="+strings[0]+"&drink_id="+strings[1];
                 osw.write(sendMsg);
                 osw.flush();
 

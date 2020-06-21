@@ -26,17 +26,52 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp">
+        android:layout_height="100dp">
         <EditText
-            android:layout_width="130dp"
+            android:layout_width="110dp"
             android:layout_height="50dp"
             android:background="@color/white"
             android:id="@+id/start_price"/>
         <TextView
-            android:layout_width="130dp"
+            android:layout_width="60dp"
             android:layout_height="50dp"
-            android:layout_toRightOf="@id/start_price"/>
+            android:layout_toRightOf="@id/start_price"
+            android:text=" 이상"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:id="@+id/txt_up"/>
+        <EditText
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/end_price"
+            android:layout_toRightOf="@id/txt_up"/>
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/end_price"
+            android:text=" 이하"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:id="@+id/txt_down"/>
+        <Button
+            android:layout_toRightOf="@id/txt_down"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="검색"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
 
+        <EditText
+            android:layout_width="335dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/start_price"
+            android:background="@color/white"
+            android:id="@+id/drink_name"/>
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
