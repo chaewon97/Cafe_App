@@ -94,12 +94,11 @@ public class Beverage_List_Fragment extends Fragment{
                 }
             }
 
-            mItemListAdapter = new ItemListAdapter(getActivity(), items, R.layout.beverage_list_fragment);
-            mItemListAdapter.setOnItemClickListener(new ItemListAdapter.OnItemClickListner() {
+            mItemListAdapter = new ItemListAdapter(context, items, R.layout.beverage_list_fragment);
+            mItemListAdapter.setOnItemClickListener(new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, ItemVO itemVO) {
-                    Intent intent = new Intent(context,
-                            OrderActivity.class);
+                    Intent intent = new Intent(context, OrderActivity.class);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("beverage_id", itemVO.getId());
                     getActivity().startActivity(intent);

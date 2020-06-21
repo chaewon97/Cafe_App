@@ -25,14 +25,14 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         this.item_layout = item_layout;
     }
 
-    public OnItemClickListner mOmItemClickListner = null;
+    public OnItemClickListener mOmItemClickListener = null;
 
-    public interface OnItemClickListner{
+    public interface OnItemClickListener{
         void onItemClick(View view, ItemVO itemVO);
     }
 
-    public void setOnItemClickListener(OnItemClickListner listener){
-        mOmItemClickListner = listener;
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mOmItemClickListener = listener;
     }
 
     public ItemListAdapter(Context mContext, ArrayList<ItemVO> item_list){

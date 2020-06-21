@@ -58,7 +58,7 @@ public class Cafe_List_Fragment extends Fragment{
         if(args != null){
             this.userId = args.getString("user_id");
 
-            Log.e("cafeID :: " , userId);
+            Log.e("userID :: " , userId);
         }
         RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.cafe_list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);

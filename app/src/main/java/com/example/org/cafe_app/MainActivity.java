@@ -74,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-
-                Intent intent = new Intent(getApplicationContext(),
-                        home.class);
-                startActivity(intent);
             }
         });
     }
