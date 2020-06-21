@@ -6,7 +6,6 @@ public class ItemVO {
     private int thumb_nail;
     private int price;
     private int type;
-    private String popul;
 
 
     public int getThumb_nail() {return this.thumb_nail;}
@@ -14,14 +13,12 @@ public class ItemVO {
     public String getId() {return this.id;}
     public int getPrice() {return this.price;}
     public int getType() {return this.type;}
-    public String getPopul() {return this.popul;}
 
-    public ItemVO(int thumb_nail, String title, String id, int price, int type, String popul){
+    public ItemVO(int thumb_nail, String title, String id, int price, int type){
         this.thumb_nail = thumb_nail;
         this.title = title;
         this.id = id;
         this.price = price;
         this.type = type;
-        this.popul = popul;
     }
 }

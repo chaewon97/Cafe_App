@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_search, container, false);
 
-        RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.search_list);
+        final RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.search_list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -59,10 +59,10 @@ public class SearchFragment extends Fragment {
             this.user_id = args.getString("user_id");
         }
 
-        up = viewGroup.findViewById(R.id.txt_up);
-        down = viewGroup.findViewById(R.id.txt_up);
-        drink_name = viewGroup.findViewById(R.id.drink_name);
-        popul = viewGroup.findViewById(R.id.item_population);
+        up = (EditText)viewGroup.findViewById(R.id.start_price);
+        down = (EditText)viewGroup.findViewById(R.id.end_price);
+        drink_name = (EditText)viewGroup.findViewById(R.id.drink_name);
+
 
         btn_search = viewGroup.findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +88,9 @@ public class SearchFragment extends Fragment {
                             String item_name = resultObject.getString("name");
                             String item_id = resultObject.getString("id");
                             int price = Integer.parseInt(resultObject.getString("price"));
-                            String popul = resultObject.getString("popul");
 
                             ItemVO item;
-                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1, popul);
+                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1);
 
                             items.add(item);
                         }
@@ -107,6 +106,8 @@ public class SearchFragment extends Fragment {
                             getActivity().startActivity(intent);
                         }
                     });
+
+                    recyclerView.setAdapter(mItemListAdapter);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

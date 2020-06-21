@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="검색"
+                android:text="음료검색"
                 android:textStyle="bold"
                 android:textSize="21dp"
                 android:textColor="#FFFFFF"/>
@@ -28,32 +28,32 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <EditText
-            android:layout_width="110dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:background="@color/white"
             android:hint="최소가격"
             android:id="@+id/start_price"/>
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/start_price"
-            android:text=" 이상"
+            android:text="이상"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:gravity="center"
             android:id="@+id/txt_up"/>
         <EditText
-            android:layout_width="110dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:background="@color/white"
             android:id="@+id/end_price"
             android:hint="최대가격"
             android:layout_toRightOf="@id/txt_up"/>
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/end_price"
-            android:text=" 이하"
+            android:text="이하"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:gravity="center"
@@ -69,7 +69,7 @@
             android:id="@+id/btn_search"/>
 
         <EditText
-            android:layout_width="335dp"
+            android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_below="@id/start_price"
             android:background="@color/white"
