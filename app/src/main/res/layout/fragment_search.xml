@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#555555">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/bg_main">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="100dp"/>
+            <TextView
+                android:id="@+id/search_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="검색"
+                android:textStyle="bold"
+                android:textSize="21dp"
+                android:textColor="#FFFFFF"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        <EditText
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/start_price"/>
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/start_price"/>
+
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:id="@+id/search_list">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

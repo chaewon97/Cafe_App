@@ -34,7 +34,7 @@ public class home extends AppCompatActivity {
         beverage_list_fragment = new Beverage_List_Fragment(this.getApplicationContext());
 
         Intent intent = getIntent();
-        user_id = intent.getExtras().getString("user_id");
+        user_id = intent.getStringExtra("user_id");
         Log.e("로그인 아이디 :: ",user_id);
 
         //FirstView Fragment

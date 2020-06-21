@@ -37,8 +37,8 @@ public class OrderActivity extends AppCompatActivity{
         setContentView(R.layout.activity_order);
 
         Intent intent = getIntent();
-        user_id = intent.getExtras().getString("user_id");
-        beverage_id = intent.getExtras().getString("beverage_id");
+        user_id = intent.getStringExtra("user_id");
+        beverage_id = intent.getStringExtra("beverage_id");
 
         order_list = (ListView)findViewById(R.id.order_list);
         btn_order = (Button)findViewById(R.id.btn_order);
