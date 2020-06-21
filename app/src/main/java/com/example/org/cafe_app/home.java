@@ -20,6 +20,7 @@ public class home extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     Beverage_List_Fragment beverage_list_fragment;
+    SearchFragment fragment_search;
     Cafe_List_Fragment cafe_list_fragment;
     String user_id;
 
@@ -51,12 +52,7 @@ public class home extends AppCompatActivity {
                         return true;
                     }
                     case R.id.beverage_list_tab: {
-                        /*
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.home_layout, beverage_list_fragment).commitAllowingStateLoss();
-                         */
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.home_layout, cafe_list_fragment).commitAllowingStateLoss();
+                        replaceFragment(fragment_search, user_id);
                         return true;
                     }
 
@@ -87,7 +83,4 @@ public class home extends AppCompatActivity {
         fragmentTransaction.replace(R.id.home_layout, fragment).commit();
     }
 
-    public interface SetActivity{
-        void setActivity(String userId, String beverageId);
-    }
 }

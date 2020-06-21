@@ -1,6 +1,7 @@
 package com.example.org.cafe_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class SearchFragment extends Fragment {
@@ -74,11 +76,32 @@ public class SearchFragment extends Fragment {
                     JSONObject resultObject;
                     JSONArray resultObjectArray = new JSONArray(result);
 
+                    ArrayList<ItemVO> items = new ArrayList<>();
                     if(resultObjectArray.length() != 0){
                         for(int i = 0 ; i < resultObjectArray.length(); i++){
+                            resultObject = (JSONObject)resultObjectArray.get(i);
 
+                            String item_name = resultObject.getString("name");
+                            String item_id = resultObject.getString("id");
+                            int price = Integer.parseInt(resultObject.getString("price"));
+
+                            ItemVO item;
+                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1);
+
+                            items.add(item);
                         }
                     }
+
+                    mItemListAdapter = new ItemListAdapter(context, items, R.layout.fragment_search);
+                    mItemListAdapter.setOnItemClickListener(new ItemListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, ItemVO itemVO) {
+                            Intent intent = new Intent(context, OrderActivity.class);
+                            intent.putExtra("user_id", user_id);
+                            intent.putExtra("beverage_id", itemVO.getId());
+                            getActivity().startActivity(intent);
+                        }
+                    });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
