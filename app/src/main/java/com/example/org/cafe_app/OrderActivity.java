@@ -48,6 +48,7 @@ public class OrderActivity extends AppCompatActivity{
                 try {
                     InsertTask task = new InsertTask();
                     String result = task.execute(user_id, beverage_id).get();
+                    result = result.trim();
 
                     if(result.equals("true")){
                         Log.e("OrderResult :: ", "success");
@@ -140,7 +141,8 @@ public class OrderActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "user_id"+strings[0];
+                sendMsg = "user_id="+strings[0];
+
                 osw.write(sendMsg);
                 osw.flush();
 
@@ -220,7 +222,7 @@ public class OrderActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "order_id"+strings[0];
+                sendMsg = "order_id="+strings[0];
                 osw.write(sendMsg);
                 osw.flush();
 
