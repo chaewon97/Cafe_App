@@ -33,6 +33,7 @@ public class home extends AppCompatActivity {
         //Create FragmentView
         cafe_list_fragment = new Cafe_List_Fragment(this.getApplicationContext());
         beverage_list_fragment = new Beverage_List_Fragment(this.getApplicationContext());
+        fragment_search = new SearchFragment(this.getApplicationContext());
 
         Intent intent = getIntent();
         user_id = intent.getStringExtra("user_id");

@@ -59,10 +59,10 @@ public class SearchFragment extends Fragment {
             this.user_id = args.getString("user_id");
         }
 
-        up = viewGroup.findViewById(R.id.txt_up);
-        down = viewGroup.findViewById(R.id.txt_up);
-        drink_name = viewGroup.findViewById(R.id.drink_name);
-        popul = viewGroup.findViewById(R.id.item_population);
+        up = (EditText)viewGroup.findViewById(R.id.start_price);
+        down = (EditText)viewGroup.findViewById(R.id.end_price);
+        drink_name = (EditText)viewGroup.findViewById(R.id.drink_name);
+
 
         btn_search = viewGroup.findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +88,9 @@ public class SearchFragment extends Fragment {
                             String item_name = resultObject.getString("name");
                             String item_id = resultObject.getString("id");
                             int price = Integer.parseInt(resultObject.getString("price"));
-                            String popul = resultObject.getString("popul");
 
                             ItemVO item;
-                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1, popul);
+                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1);
 
                             items.add(item);
                         }
@@ -133,7 +132,7 @@ public class SearchFragment extends Fragment {
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "up_price="+strings[0]+"down_price="+strings[1]+"name="+strings[2];
+                sendMsg = "up_price="+strings[0]+"&down_price="+strings[1]+"&name="+strings[2];
                 osw.write(sendMsg);
                 osw.flush();
 
