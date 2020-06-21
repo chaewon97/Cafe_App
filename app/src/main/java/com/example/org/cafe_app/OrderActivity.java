@@ -71,6 +71,7 @@ public class OrderActivity extends AppCompatActivity{
                 try{
                     ReadListTask task = new ReadListTask();
                     String result = task.execute(user_id).get();
+                    Log.e("result :: " , result);
 
                     JSONObject resultObject;
                     JSONArray resultObjectArray = new JSONArray(result);
@@ -140,7 +141,7 @@ public class OrderActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "user_id"+strings[0];
+                sendMsg = "user_id="+strings[0];
                 osw.write(sendMsg);
                 osw.flush();
 
@@ -220,7 +221,7 @@ public class OrderActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
-                sendMsg = "order_id"+strings[0];
+                sendMsg = "order_id="+strings[0];
                 osw.write(sendMsg);
                 osw.flush();
 

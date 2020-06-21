@@ -7,7 +7,10 @@
     tools:context=".OrderActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#555555"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,8 +30,10 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/order_list"></ListView>
+            android:layout_height="match_parent"
+            android:id="@+id/order_list"
+            android:scrollbars="none"
+            android:overScrollMode="never"></ListView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

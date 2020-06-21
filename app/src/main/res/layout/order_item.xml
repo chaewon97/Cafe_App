@@ -17,7 +17,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/beverage_price"
@@ -26,7 +26,7 @@
             android:layout_weight="40"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:textColor="#555555"/>
+            android:textColor="#CCCCCC"/>
     </LinearLayout>
 
     <Button
