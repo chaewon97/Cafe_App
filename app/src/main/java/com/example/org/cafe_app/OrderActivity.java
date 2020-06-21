@@ -83,8 +83,8 @@ public class OrderActivity extends AppCompatActivity{
                         for(int i = 0 ; i < resultObjectArray.length() ; i++){
                             resultObject = (JSONObject)resultObjectArray.get(i);
 
-                            final String user_id = resultObject.getString("user_id");
-                            String drink_id = resultObject.getString("drink_id");
+                            String user_id = resultObject.getString("user_id");
+                            final String drink_id = resultObject.getString("drink_id");
                             String drink_price = resultObject.getString("drink_price");
                             String drink_name = resultObject.getString("drink_name");
                             final String order_id = resultObject.getString("order_id");
@@ -96,7 +96,7 @@ public class OrderActivity extends AppCompatActivity{
                                 public void onClick(View view) {
                                     try{
                                         DeleteTask task = new DeleteTask();
-                                        String result = task.execute(order_id, user_id).get();
+                                        String result = task.execute(order_id, drink_id).get();
 
                                         if(result.equals("true")){
                                             Log.e("DeleteResult :: ", "success");
