@@ -1,6 +1,7 @@
 package com.example.org.cafe_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,13 +33,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Beverage_List_Fragment extends Fragment {
+public class Beverage_List_Fragment extends Fragment{
     ViewGroup viewGroup;
     private RecyclerView rcc_item;
+    private ItemListAdapter mItemListAdapter;
     private Context context;
     private String id;
     private String title;
     TextView cafe_title;
+    private String user_id;
 
 
     public Beverage_List_Fragment(Context context){ this.context = context;}
@@ -56,7 +59,7 @@ public class Beverage_List_Fragment extends Fragment {
         if(args != null){
             this.id = args.getString("cafe_id");
             this.title = args.getString("cafe_name");
-
+            this.user_id = args.getString("user_id");
             Log.e("cafeID :: " , id);
         }
 
@@ -90,7 +93,20 @@ public class Beverage_List_Fragment extends Fragment {
                     items.add(item);
                 }
             }
-            recyclerView.setAdapter(new ItemListAdapter(getActivity(), items, R.layout.beverage_list_fragment));
+
+            mItemListAdapter = new ItemListAdapter(getActivity(), items, R.layout.beverage_list_fragment);
+            mItemListAdapter.setOnItemClickListener(new ItemListAdapter.OnItemClickListner() {
+                @Override
+                public void onItemClick(View view, ItemVO itemVO) {
+                    Intent intent = new Intent(context,
+                            OrderActivity.class);
+                    intent.putExtra("user_id", user_id);
+                    intent.putExtra("beverage_id", itemVO.getId());
+                    getActivity().startActivity(intent);
+                }
+            });
+
+            recyclerView.setAdapter(mItemListAdapter);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Beverage_List_Fragment beverage_list_fragment;
     Cafe_List_Fragment cafe_list_fragment;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,12 @@ public class home extends AppCompatActivity {
         cafe_list_fragment = new Cafe_List_Fragment(this.getApplicationContext());
         beverage_list_fragment = new Beverage_List_Fragment(this.getApplicationContext());
 
+        Intent intent = getIntent();
+        user_id = intent.getExtras().getString("user_id");
+        Log.e("로그인 아이디 :: ",user_id);
+
         //FirstView Fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.home_layout, cafe_list_fragment).commitAllowingStateLoss();
+        replaceFragment(cafe_list_fragment, user_id);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -41,9 +47,7 @@ public class home extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.cafe_list_tab: {
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.home_layout, cafe_list_fragment).commitAllowingStateLoss();
-
+                        replaceFragment(cafe_list_fragment, user_id);
                         return true;
                     }
                     case R.id.beverage_list_tab: {
@@ -63,13 +67,27 @@ public class home extends AppCompatActivity {
         });
     }
 
-    public void replaceFragment(Fragment fragment, String id, String name){
+    public void replaceFragment(Fragment fragment, String id, String name, String userId){
         Bundle args = new Bundle();
         args.putString("cafe_id", id);
         args.putString("cafe_name", name);
+        args.putString("user_id", userId);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragment.setArguments(args); // 데이터 넘기기
         fragmentTransaction.replace(R.id.home_layout, fragment).commit();
+    }
+
+    public void replaceFragment(Fragment fragment, String userId){
+        Bundle args = new Bundle();
+        args.putString("user_id", userId);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragment.setArguments(args); // 데이터 넘기기
+        fragmentTransaction.replace(R.id.home_layout, fragment).commit();
+    }
+
+    public interface SetActivity{
+        void setActivity(String userId, String beverageId);
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:text="주문하기"
+                android:id="@+id/btn_order"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/btn_order_list"
+                android:text="주문보기"
+                android:layout_toRightOf="@+id/btn_order"/>
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/order_list"></ListView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

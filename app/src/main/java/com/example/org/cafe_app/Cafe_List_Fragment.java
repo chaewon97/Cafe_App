@@ -41,6 +41,7 @@ public class Cafe_List_Fragment extends Fragment{
     private CafeListAdapter mCafeAdapter;
     private Context context;
     private Beverage_List_Fragment beverage_list_fragment;
+    private String userId;
 
     public Cafe_List_Fragment(Context context){
         this.context = context;
@@ -53,6 +54,12 @@ public class Cafe_List_Fragment extends Fragment{
         viewGroup = (ViewGroup) inflater.inflate(R.layout.cafe_list_fragment, container, false);
         beverage_list_fragment = new Beverage_List_Fragment(context);
 
+        Bundle args = getArguments();
+        if(args != null){
+            this.userId = args.getString("user_id");
+
+            Log.e("cafeID :: " , userId);
+        }
         RecyclerView recyclerView = (RecyclerView)viewGroup.findViewById(R.id.cafe_list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -82,7 +89,7 @@ public class Cafe_List_Fragment extends Fragment{
                 @Override
                 public void onItemClick(View view, CafeVO cafeVO) {
                     Log.e("카페 :: ", cafeVO.getId()+ ", " + cafeVO.getTitle());
-                    ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle());
+                    ((home)getActivity()).replaceFragment(beverage_list_fragment, cafeVO.getId(), cafeVO.getTitle(), userId);
                 }
             });
             recyclerView.setAdapter(mCafeAdapter);
