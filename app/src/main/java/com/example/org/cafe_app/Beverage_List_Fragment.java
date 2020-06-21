@@ -82,13 +82,14 @@ public class Beverage_List_Fragment extends Fragment{
                     String id = resultObject.getString("id");
                     int price = Integer.parseInt(resultObject.getString("price"));
                     int type  = Integer.parseInt(resultObject.getString("type"));
+                    String popul = resultObject.getString("popul");
                     ItemVO item;
 
                     if(type == 1) {
-                        item = new ItemVO(R.drawable.coffee, name, id, price, type);
+                        item = new ItemVO(R.drawable.coffee, name, id, price, type, popul);
                     }
                     else{
-                        item = new ItemVO(R.drawable.cake, name, id, price, type);
+                        item = new ItemVO(R.drawable.cake, name, id, price, type, popul);
                     }
                     items.add(item);
                 }

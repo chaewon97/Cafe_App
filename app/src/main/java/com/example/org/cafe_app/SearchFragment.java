@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +40,7 @@ public class SearchFragment extends Fragment {
     private Context context;
     private String user_id;
     EditText up, down, drink_name;
+    TextView popul;
     Button btn_search;
 
     public SearchFragment(Context context) {this.context = context;}
@@ -60,6 +62,7 @@ public class SearchFragment extends Fragment {
         up = viewGroup.findViewById(R.id.txt_up);
         down = viewGroup.findViewById(R.id.txt_up);
         drink_name = viewGroup.findViewById(R.id.drink_name);
+        popul = viewGroup.findViewById(R.id.item_population);
 
         btn_search = viewGroup.findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +71,7 @@ public class SearchFragment extends Fragment {
                 String up_price = up.getText().toString();
                 String down_price = down.getText().toString();
                 String name = drink_name.getText().toString();
+
 
                 try {
                     CustomTask task = new CustomTask();
@@ -84,9 +88,10 @@ public class SearchFragment extends Fragment {
                             String item_name = resultObject.getString("name");
                             String item_id = resultObject.getString("id");
                             int price = Integer.parseInt(resultObject.getString("price"));
+                            String popul = resultObject.getString("popul");
 
                             ItemVO item;
-                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1);
+                            item = new ItemVO(R.drawable.coffee, item_name, item_id, price, 1, popul);
 
                             items.add(item);
                         }

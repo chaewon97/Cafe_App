@@ -60,6 +60,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         viewHolder.txt_item_name.setText(itemVO.getTitle());
         viewHolder.txt_price.setText(String.valueOf(itemVO.getPrice()));
+        viewHolder.txt_popul.setText(itemVO.getPopul());
         viewHolder.layout_item_panel.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -80,6 +81,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         private ImageView img_thumb;
         private TextView txt_item_name;
         private TextView txt_price;
+        private TextView txt_popul;
+
 
         public ViewHolder(View convertView){
             super(convertView);
@@ -88,6 +91,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             img_thumb = (ImageView)convertView.findViewById(R.id.item_img_thumb);
             txt_item_name = (TextView)convertView.findViewById(R.id.item_name);
             txt_price = (TextView)convertView.findViewById(R.id.item_price);
+            txt_popul = (TextView)convertView.findViewById(R.id.item_population);
         }
 
     }
